@@ -3,6 +3,7 @@ body{
   margin:0;
   padding:0;
   background-color: #e8e8e8;
+  height:100%;
 }
 header{
   position:sticky;
@@ -10,8 +11,9 @@ header{
   text-align:center;
   z-index:10;
   background-color:#e8e8e8;
-
 }
+#root{height:100%;}
+.app{height:100%;}
 .searchBox{position:relative; padding:10px;}
 .searchBox input{
   width: 100%;
@@ -77,4 +79,13 @@ header{
 
 .navigator div.active::after{
   content:'\2713';
+}
+
+.pdf{
+  position:relative;
+  height:100%;
+}
+.pdf iframe{
+  width:99.5%;
+  min-height:800px;
 }

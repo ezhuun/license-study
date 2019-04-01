@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>license Infomation</title>
+  <link rel="stylesheet" href="./css/index.css" type="text/css" />
+  <script src="./config/conf.js"></script>
+  <script src="https://unpkg.com/react@15/dist/react.js"></script>
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
+
+  <script type="text/babel">
+
+  class Navi extends React.Component{
+    constructor(props){
+      super(props);
+      this.handleClick1 = this.handleClick1.bind(this);
+      this.handleClick3 = this.handleClick3.bind(this);
+    }
+
+    handleClick1(e){
+      e.preventDefault();
+      location.href="./index.html";
+    }
+    handleClick3(e){
+      e.preventDefault();
+      location.href="./databases.html";
+    }
+
+    render(){
+      return(
+        <div className="navigator">
+          <div onClick={this.handleClick1}>신기술동향</div>
+          <div className="active">알고리즘</div>
+          <div onClick={this.handleClick3}>데이터베이스</div>
+          <div onClick={()=>alert('준비중')}>전산영어</div>
+          <div onClick={()=>alert('준비중')}>업무프로세스</div>
+        </div>
+      );
+    }
+  }
+
+
+  class Algorithm extends React.Component{
+    constructor(props){
+      super(props);
+    }
+
+    render() {
+      return (
+        <div className="pdf">
+          <iframe src="./resource/algorithm.pdf"></iframe>
+        </div>
+      );
+    }
+
+  }
+
+  class App extends React.Component {
+    constructor(props){
+      super(props);
+    }
+    render() {
+      return (
+        <div className="app">
+          <Algorithm />
+          <Navi />
+        </div>
+      );
+    }
+  }
+
+  ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

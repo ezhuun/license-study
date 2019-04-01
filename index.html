@@ -11,13 +11,29 @@
   <script type="text/babel">
 
   class Navi extends React.Component{
+    constructor(props){
+      super(props);
+      this.handleClick2 = this.handleClick2.bind(this);
+      this.handleClick3 = this.handleClick3.bind(this);
+    }
+
+    handleClick2(e){
+      e.preventDefault();
+      location.href="./algorithm.html";
+    }
+    handleClick3(e){
+      e.preventDefault();
+      location.href="./databases.html";
+    }
+
     render(){
       return(
         <div className="navigator">
           <div className="active">신기술동향</div>
-          <div onClick={()=>alert('준비중')}>알고리즘</div>
+          <div onClick={this.handleClick2}>알고리즘</div>
+          <div onClick={this.handleClick3}>데이터베이스</div>
           <div onClick={()=>alert('준비중')}>전산영어</div>
-          <div onClick={()=>alert('준비중')}>또뭐지</div>
+          <div onClick={()=>alert('준비중')}>업무프로세스</div>
         </div>
       );
     }
@@ -108,7 +124,7 @@
     }
     render() {
     return (
-      <div>
+      <div className="app">
         <NewTechnology />
         <Navi />
       </div>
