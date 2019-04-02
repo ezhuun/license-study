@@ -1,13 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <head>
   <title>license Infomation</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
   <link rel="stylesheet" href="./css/index.css" type="text/css" />
   <script src="./config/conf.js"></script>
   <script src="https://unpkg.com/react@15/dist/react.js"></script>
   <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
-
+  <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/html-react-parser@latest/dist/html-react-parser.min.js"></script>
   <script type="text/babel">
 
   class Navi extends React.Component{
@@ -40,7 +42,11 @@
   }
 
   class NewTechnologyInfo extends React.Component{
+	constructor(props){
+		super(props);
+	}
   	render(){
+
   		return(
   			<div className="postCard">
           <div className="card-head">
@@ -48,16 +54,15 @@
               {this.props.content.no}
             </span>
             <div className="card-title">
-              {this.props.content.ko}
+              {HTMLReactParser(this.props.content.ko)}
             </div>
             <div className="card-subinfo">
-              <span>영문: <b>{this.props.content.en}</b></span>
-              <span>영문풀네임: <b>{this.props.content.full_en}</b></span>
+              <span>영문: <b>{HTMLReactParser(this.props.content.en)}</b></span>
+              <span>영문풀네임: <b>{HTMLReactParser(this.props.content.full_en)}</b></span>
             </div>
-
           </div>
           <div className="card-content">
-            {this.props.content.description}
+            {HTMLReactParser(this.props.content.description)}
           </div>
         </div>
   		);
@@ -70,7 +75,7 @@
 
   		this.state = {
   			keyword: '',
-        newTechnologyData: newTechnologyObject
+        	newTechnologyData: newTechnologyObject
   		}
   		this.handleChange = this.handleChange.bind(this);
     }
@@ -87,6 +92,15 @@
   			﻿
   			data = data.filter(
   				(content) => {
+					content.ko = content.ko.replace(/<mark>/gi, "");
+					content.ko = content.ko.replace(/<\/mark>/gi, "");	
+					content.en = content.en.replace(/<mark>/gi, "");
+					content.en = content.en.replace(/<\/mark>/gi, "");	
+					content.full_en = content.full_en.replace(/<mark>/gi, "");
+					content.full_en = content.full_en.replace(/<\/mark>/gi, "");	
+					content.description = content.description.replace(/<mark>/gi, "");
+					content.description = content.description.replace(/<\/mark>/gi, "");	
+
   					return (
               (content.ko.toLowerCase().indexOf(this.state.keyword.toLowerCase()) > -1) ||
               (content.en.toLowerCase().indexOf(this.state.keyword.toLowerCase()) > -1) ||
@@ -98,6 +112,12 @@
   			)
 
   			return data.map((content, i)=>{
+				if(this.state.keyword != ""){
+					content.ko = content.ko.replace(new RegExp(this.state.keyword,"gi"), "<mark>"+this.state.keyword+"</mark>");
+					content.en = content.en.replace(new RegExp(this.state.keyword,"gi"), "<mark>"+this.state.keyword+"</mark>");
+					content.full_en = content.full_en.replace(new RegExp(this.state.keyword,"gi"), "<mark>"+this.state.keyword+"</mark>");
+					content.description = content.description.replace(new RegExp(this.state.keyword,"gi"), "<mark>"+this.state.keyword+"</mark>");
+				}
   				return (<NewTechnologyInfo content={content} key={i} />);
   			});
   		}
