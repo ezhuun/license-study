@@ -106,7 +106,7 @@
               (content.en.toLowerCase().indexOf(this.state.keyword.toLowerCase()) > -1) ||
               (content.full_en.toLowerCase().indexOf(this.state.keyword.toLowerCase()) > -1) ||
               (content.description.toLowerCase().indexOf(this.state.keyword.toLowerCase()) > -1) ||
-              (content.no == this.state.keyword)
+              ("#"+content.no == this.state.keyword)
             );
   				}
   			)
