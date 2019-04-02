@@ -43,7 +43,9 @@
   var arr = [];
   if(localStorage){
     if(localStorage.getItem("no") != null || localStorage.getItem("no") != ""){
+      console.log(localStorage.getItem("no"));
       arr = localStorage.getItem("no").split(',');
+
     }
   }
   function localStorageRemoveNo(no){
