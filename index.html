@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <link rel="stylesheet" href="./css/index.css" type="text/css" />
   <script src="./config/conf.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
   <script src="https://unpkg.com/react@15/dist/react.js"></script>
   <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
@@ -12,6 +16,74 @@
   <script src="https://unpkg.com/html-react-parser@latest/dist/html-react-parser.min.js"></script>
   <script type="text/babel">
 
+  const debounce = (fn, delay) => {
+  	var timer = null;
+  	return function(){
+  		clearTimeout(timer);
+  		timer = setTimeout(function(){
+  			fn();
+  		}, delay);
+  	};
+  }
+
+  if(localStorage){
+    window.addEventListener('scroll', debounce(handleScroll, 500));
+    if(localStorage.getItem("scrollTop") > 0){
+      $('html, body').animate({scrollTop :localStorage.getItem("scrollTop")}, 400);
+    }
+  }
+
+  function handleScroll(){
+    setLocalStorage(window.scrollY);
+  }
+  function setLocalStorage(scrollTop){
+    localStorage.setItem("scrollTop", scrollTop);
+  }
+
+  var arr = [];
+  if(localStorage){
+    if(localStorage.getItem("no") !== null || localStorage.getItem("no") !== ""){
+      arr = localStorage.getItem("no").split(',');
+    }
+  }
+  function localStorageRemoveNo(no){
+    if(localStorage){
+      let getNo = localStorage.getItem("no");
+      let temp=null;
+      if(getNo != null){
+        temp = getNo;
+        temp = temp.split(',');
+        temp.splice(temp.indexOf(no), 1);
+        arr = temp.filter((item, idx, array)=>{
+          return array.indexOf( item ) === idx ;
+        });
+        temp = arr.join(',');
+        localStorage.setItem("no",temp);
+      }
+
+    }
+  }
+
+  function localStorageAddNo(no){
+    if(localStorage){
+      let getNo = localStorage.getItem("no");
+      let temp=null;
+      if(getNo == null || getNo == ""){
+        arr.push(no);
+        temp = arr.join(',');
+        localStorage.setItem("no",temp);
+      }else{
+        temp = getNo;
+        temp = temp.split(',');
+        temp.push(no);
+        arr = temp.filter((item, idx, array)=>{
+          return array.indexOf( item ) === idx ;
+        });
+        temp = arr.join(',');
+        localStorage.setItem("no",temp);
+      }
+    }
+  }
   class Navi extends React.Component{
     constructor(props){
       super(props);
@@ -44,21 +116,47 @@
   class NewTechnologyInfo extends React.Component{
 	constructor(props){
 		super(props);
+    this.handleCLick=this.handleCLick.bind(this);
 	}
+
+  handleCLick(e){
+    if(e.target.classList.contains("active")){
+      //초기화
+      localStorageRemoveNo(e.target.innerText);
+      e.target.classList.remove("active");
+    }else{
+      //입력
+      localStorageAddNo(e.target.innerText);
+      e.target.classList.add("active");
+    }
+  }
   	render(){
+      let eng_txt = "";
+      if(this.props.content.en){
+        eng_txt += "<span>영문: <b>"+this.props.content.en+"</b></span>"
+      }
+      if(this.props.content.full_en){
+        eng_txt += "<span>풀네임: <b>"+this.props.content.full_en+"</b></span>"
+      }
+
+      let activeClass="";
+      let tempStr = this.props.content.no+"";
+      if(arr.indexOf(tempStr) !== -1){
+        activeClass = "active";
+        console.log(tempStr+"번: "+activeClass);
+      }
 
   		return(
   			<div className="postCard">
           <div className="card-head">
-            <span className="no">
+            <span className={'no '+ activeClass} onClick={this.handleCLick}>
               {this.props.content.no}
             </span>
             <div className="card-title">
               {HTMLReactParser(this.props.content.ko)}
             </div>
             <div className="card-subinfo">
-              <span>영문: <b>{HTMLReactParser(this.props.content.en)}</b></span>
-              <span>영문풀네임: <b>{HTMLReactParser(this.props.content.full_en)}</b></span>
+              {HTMLReactParser(eng_txt)}
             </div>
           </div>
           <div className="card-content">
@@ -93,13 +191,13 @@
   			data = data.filter(
   				(content) => {
 					content.ko = content.ko.replace(/<mark>/gi, "");
-					content.ko = content.ko.replace(/<\/mark>/gi, "");	
+					content.ko = content.ko.replace(/<\/mark>/gi, "");
 					content.en = content.en.replace(/<mark>/gi, "");
-					content.en = content.en.replace(/<\/mark>/gi, "");	
+					content.en = content.en.replace(/<\/mark>/gi, "");
 					content.full_en = content.full_en.replace(/<mark>/gi, "");
-					content.full_en = content.full_en.replace(/<\/mark>/gi, "");	
+					content.full_en = content.full_en.replace(/<\/mark>/gi, "");
 					content.description = content.description.replace(/<mark>/gi, "");
-					content.description = content.description.replace(/<\/mark>/gi, "");	
+					content.description = content.description.replace(/<\/mark>/gi, "");
 
   					return (
               (content.ko.toLowerCase().indexOf(this.state.keyword.toLowerCase()) > -1) ||
@@ -113,10 +211,10 @@
 
   			return data.map((content, i)=>{
 				if(this.state.keyword != ""){
-					content.ko = content.ko.replace(new RegExp(this.state.keyword,"gi"), "<mark>"+this.state.keyword+"</mark>");
-					content.en = content.en.replace(new RegExp(this.state.keyword,"gi"), "<mark>"+this.state.keyword+"</mark>");
-					content.full_en = content.full_en.replace(new RegExp(this.state.keyword,"gi"), "<mark>"+this.state.keyword+"</mark>");
-					content.description = content.description.replace(new RegExp(this.state.keyword,"gi"), "<mark>"+this.state.keyword+"</mark>");
+					content.ko = content.ko.replace(new RegExp(this.state.keyword,"gi"), (match) => {return "<mark>"+match+"</mark>"});
+					content.en = content.en.replace(new RegExp(this.state.keyword,"gi"), (match) => {return "<mark>"+match+"</mark>"});
+					content.full_en = content.full_en.replace(new RegExp(this.state.keyword,"gi"), (match) => {return "<mark>"+match+"</mark>"});
+					content.description = content.description.replace(new RegExp(this.state.keyword,"gi"), (match) => {return "<mark>"+match+"</mark>"});
 				}
   				return (<NewTechnologyInfo content={content} key={i} />);
   			});
@@ -125,11 +223,13 @@
   		return(
   			<div>
   				<header>
-            <h1>신기술동향 단어모음집</h1>
-            <div className="searchBox">
-              <input name="keyword" placeholder="Search for Keyword" value={this.state.keyword} onChange={this.handleChange}/>
-            </div>
+            <h1>신기술동향 단어장</h1>
           </header>
+          <div className="searchBox">
+            <span>#번호 or 검색키워드</span>
+            <input name="keyword" placeholder="Search for Keyword" value={this.state.keyword} onChange={this.handleChange}/>
+          </div>
+
   				<div className="postCardBox">
             {mapToComponents(this.state.newTechnologyData)}
   				</div>
