@@ -52,7 +52,7 @@ header{
 
 .no.active{background-color:#00B050 !important; color:#fff !important;}
 .card-head{display:block;}
-.card-head .no{transition: all 0.5s; position:absolute; z-index:0; opacity:0.7; font-weight:bold; top:5px; border-right:8px solid red; border-top:2px solid #CDDBBE; border-left:2px solid #CDDBBE; border-bottom:2px solid #CDDBBE; right:-8px; color:#000; background-color:#fff; padding:3px 20px;}
+.card-head .no{cursor:pointer; transition: all 0.5s; position:absolute; z-index:0; opacity:0.7; font-weight:bold; top:5px; border-right:8px solid red; border-top:2px solid #CDDBBE; border-left:2px solid #CDDBBE; border-bottom:2px solid #CDDBBE; right:-8px; color:#000; background-color:#fff; padding:3px 20px;}
 .card-head .card-title{font-weight: bold; font-size:1.5em;}
 .card-head .card-subinfo{display:block; color:#E77372}
 .card-head .card-subinfo span{margin-right:10px; z-index:10;}
