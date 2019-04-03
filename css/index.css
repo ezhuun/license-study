@@ -102,6 +102,6 @@ header{
 }
 .pdf iframe{
   display:block;
-  width:100vw;
+  width:99vw;
   height: 90vh;
 }
