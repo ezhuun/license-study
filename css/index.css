@@ -36,7 +36,7 @@ header{
 .postCardBox{
 	position: relative;
   padding:10px;
-  margin-bottom:100px;
+  margin-bottom:150px;
 }
 .postCard{
 	vertical-align:top;
@@ -71,7 +71,7 @@ header{
   position:relative;
   cursor:pointer;
   text-align:center;
-  padding-top:18px;
+  padding-top:20px;
   vertical-align: middle;
   flex:1;
   border-top:1px solid #3F4653;
