@@ -105,3 +105,37 @@ header{
   width:99vw;
   height: 90vh;
 }
+
+.TstingBox{
+  position:absolute;
+  top:3px;
+  right:10px;
+  color: #80808D;
+  font-weight:bold;
+  padding:3px 10px;
+  border-radius:8px;
+  border: 2px solid #80808D;
+  font-size:0.9em;
+  cursor:pointer;
+}
+
+.testing-input{
+  position:relative;
+}
+.testing-input input{
+  padding: 8px 10px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.testing-input span:first-child{
+  margin-right:10px;
+}
+.testing-input span:last-child{
+  text-shadow: 3px 2px red;
+  font-weight:bold;
+  margin-left:10px;
+
+}

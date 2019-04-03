@@ -118,7 +118,12 @@
   class NewTechnologyInfo extends React.Component{
 	constructor(props){
 		super(props);
+    this.state = {
+      answer: 0
+    }
+
     this.handleCLick=this.handleCLick.bind(this);
+    this.handleChangeAnswer = this.handleChangeAnswer.bind(this);
 	}
 
   handleCLick(e){
@@ -130,6 +135,24 @@
       //입력
       localStorageAddNo(e.target.innerText);
       e.target.classList.add("active");
+    }
+  }
+
+  handleChangeAnswer(e){
+    if(e.target.value != ""){
+      if(
+        this.props.content.en.toLowerCase().replace(" ","") == e.target.value.toLowerCase().replace(" ","") ||
+        this.props.content.full_en.toLowerCase().replace(" ","") == e.target.value.toLowerCase().replace(" ","") ||
+        this.props.content.ko.toLowerCase().replace(" ","") == e.target.value.toLowerCase().replace(" ","")
+      ){
+        this.setState({
+          answer: 1
+        })
+      }else{
+        this.setState({
+          answer: 0
+        })
+      }
     }
   }
   	render(){
@@ -155,14 +178,23 @@
               {this.props.content.no}
             </span>
             <div className="card-title">
-              {HTMLReactParser(this.props.content.ko)}
+            {this.props.mode == "normal" ? HTMLReactParser(this.props.content.ko) : ''}
             </div>
             <div className="card-subinfo">
-              {HTMLReactParser(eng_txt)}
+              {this.props.mode == "normal" ? HTMLReactParser(eng_txt) : ''}
             </div>
           </div>
           <div className="card-content">
             {HTMLReactParser(this.props.content.description)}
+          </div>
+          <div className="testing-input">
+            <span>
+              {this.props.mode != "normal" ? '정답은? ' : ''}
+            </span>
+            {this.props.mode != "normal" ? <input type="text" onChange={this.handleChangeAnswer}/> : ''}
+            <span>
+              {(this.props.mode != "normal") && (this.state.answer==1) ? '정답' : ''}
+            </span>
           </div>
         </div>
   		);
@@ -175,9 +207,11 @@
 
   		this.state = {
   			keyword: '',
-        	newTechnologyData: newTechnologyObject
+        newTechnologyData: newTechnologyObject,
+        mode: "normal"
   		}
   		this.handleChange = this.handleChange.bind(this);
+      this.handleModeChangeClick = this.handleModeChangeClick.bind(this);
     }
 
   	handleChange(e){
@@ -185,6 +219,20 @@
   			keyword: e.target.value
   		});
   	}
+
+    handleModeChangeClick(){
+      if(this.state.mode == "normal"){
+        this.setState({
+          mode: "testing"
+        });
+      }else{
+        this.setState({
+          mode: "normal"
+        });
+      }
+
+    }
+
 
   	render(){
       const mapToComponents = (data) => {
@@ -218,7 +266,7 @@
 					content.full_en = content.full_en.replace(new RegExp(this.state.keyword,"gi"), (match) => {return "<mark>"+match+"</mark>"});
 					content.description = content.description.replace(new RegExp(this.state.keyword,"gi"), (match) => {return "<mark>"+match+"</mark>"});
 				}
-  				return (<NewTechnologyInfo content={content} key={i} />);
+  				return (<NewTechnologyInfo content={content} key={i} mode={this.state.mode}/>);
   			});
   		}
 
@@ -229,6 +277,9 @@
           </header>
           <div className="searchBox">
             <span>#번호 or 검색키워드</span>
+            <div className="TstingBox" onClick={this.handleModeChangeClick}>
+              {this.state.mode=="normal" ? '문제풀기' : '기본전환'}
+            </div>
             <input name="keyword" placeholder="Search for Keyword" value={this.state.keyword} onChange={this.handleChange}/>
           </div>
 
