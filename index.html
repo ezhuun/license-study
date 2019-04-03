@@ -141,7 +141,6 @@
   handleChangeAnswer(e){
     if(e.target.value != ""){
       if(
-
         this.props.content.en.toLowerCase().replace(new RegExp("\\s","gi"),"") == e.target.value.toLowerCase().replace(new RegExp("\\s","gi"),"") ||
         this.props.content.full_en.toLowerCase().replace(new RegExp("\\s","gi"),"") == e.target.value.toLowerCase().replace(new RegExp("\\s","gi"),"") ||
         this.props.content.ko.toLowerCase().replace(new RegExp("\\s","gi"),"") == e.target.value.toLowerCase().replace(new RegExp("\\s","gi"),"")
@@ -172,6 +171,16 @@
         console.log(tempStr+"번: "+activeClass);
       }
 
+      let heightStyle={}
+      if(this.props.mode == "normal"){
+        heightStyle={
+          height:"0"
+        }
+      }else{
+        heightStyle={
+          height:"auto"
+        }
+      }
   		return(
   			<div className="postCard">
           <div className="card-head">
@@ -188,7 +197,7 @@
           <div className="card-content">
             {HTMLReactParser(this.props.content.description)}
           </div>
-          <div className="testing-input">
+          <div className="testing-input" style={heightStyle}>
             <span>
               {this.props.mode != "normal" ? '정답은? ' : ''}
             </span>
