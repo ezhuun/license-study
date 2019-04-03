@@ -269,7 +269,9 @@
   				return (<NewTechnologyInfo content={content} key={i} mode={this.state.mode}/>);
   			});
   		}
-
+      const relativeBox={
+        position:"relative"
+      }
   		return(
   			<div>
   				<header>
@@ -277,8 +279,10 @@
           </header>
           <div className="searchBox">
             <span>#번호 or 검색키워드</span>
-            <div className="TstingBox" onClick={this.handleModeChangeClick}>
-              {this.state.mode=="normal" ? '문제풀기' : '기본전환'}
+            <div style={relativeBox}>
+              <div className="TstingBox" onClick={this.handleModeChangeClick}>
+                {this.state.mode=="normal" ? '문제풀기' : '기본전환'}
+              </div>
             </div>
             <input name="keyword" placeholder="Search for Keyword" value={this.state.keyword} onChange={this.handleChange}/>
           </div>

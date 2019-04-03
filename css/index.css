@@ -108,8 +108,8 @@ header{
 
 .TstingBox{
   position:absolute;
-  top:3px;
-  right:10px;
+  top:-7px;
+  right:0;
   color: #80808D;
   font-weight:bold;
   padding:3px 10px;
