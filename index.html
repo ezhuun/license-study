@@ -141,9 +141,10 @@
   handleChangeAnswer(e){
     if(e.target.value != ""){
       if(
-        this.props.content.en.toLowerCase().replace(" ","") == e.target.value.toLowerCase().replace(" ","") ||
-        this.props.content.full_en.toLowerCase().replace(" ","") == e.target.value.toLowerCase().replace(" ","") ||
-        this.props.content.ko.toLowerCase().replace(" ","") == e.target.value.toLowerCase().replace(" ","")
+
+        this.props.content.en.toLowerCase().replace(new RegExp("\\s","gi"),"") == e.target.value.toLowerCase().replace(new RegExp("\\s","gi"),"") ||
+        this.props.content.full_en.toLowerCase().replace(new RegExp("\\s","gi"),"") == e.target.value.toLowerCase().replace(new RegExp("\\s","gi"),"") ||
+        this.props.content.ko.toLowerCase().replace(new RegExp("\\s","gi"),"") == e.target.value.toLowerCase().replace(new RegExp("\\s","gi"),"")
       ){
         this.setState({
           answer: 1
