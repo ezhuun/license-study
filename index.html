@@ -151,10 +151,10 @@
   }
 
   handleChangeAnswer(e){
-    if(e.target.value != ""){
-	  this.setState({
+	this.setState({
 		inputValue: e.target.value
-	  })
+	})
+    if(e.target.value != ""){
       if(
         this.props.content.en.toLowerCase().replace(new RegExp("\\s","gi"),"") == e.target.value.toLowerCase().replace(new RegExp("\\s","gi"),"") ||
         this.props.content.full_en.toLowerCase().replace(new RegExp("\\s","gi"),"") == e.target.value.toLowerCase().replace(new RegExp("\\s","gi"),"") ||
