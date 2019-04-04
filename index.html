@@ -130,13 +130,26 @@
 		super(props);
     this.state = {
       answer: 0,
-	  inputValue: ''
-
+	  inputValue: '',
+	  showAnswer: 0
     }
 
     this.handleCLick=this.handleCLick.bind(this);
     this.handleChangeAnswer = this.handleChangeAnswer.bind(this);
+	this.handleShowAnswerClick = this.handleShowAnswerClick.bind(this);
 	}
+
+ handleShowAnswerClick(){
+	if(this.state.showAnswer == 0){
+		this.setState({
+			showAnswer: 1
+		})
+	}else{
+		this.setState({
+			showAnswer: 0
+		})
+	}
+ }
 
   handleCLick(e){
     if(e.target.classList.contains("active")){
@@ -196,6 +209,15 @@
           height:"auto"
         }
       }
+
+	  let showAnswer="";
+	  if(this.props.mode != "normal"){
+		if(this.state.showAnswer==0){
+			showAnswer="정답보기";
+		}else{
+			showAnswer=this.props.content.en;
+		}
+	  }
   		return(
   			<div className="postCard">
           <div className="card-head">
@@ -211,6 +233,9 @@
           </div>
           <div className="card-content">
             {HTMLReactParser(this.props.content.description)}
+			<span className="show-answer" onClick={this.handleShowAnswerClick}>
+				{showAnswer}
+			</span>
           </div>
           <div className="testing-input" style={heightStyle}>
             <span>
