@@ -99,6 +99,8 @@ header{
 .pdf{
   position:relative;
   height:100%;
+  overflow:auto;
+  -webkit-overflow-scrolling:touch;
 }
 .pdf iframe{
   display:block;
