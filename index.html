@@ -92,7 +92,7 @@
       this.handleClick2 = this.handleClick2.bind(this);
       this.handleClick3 = this.handleClick3.bind(this);
       this.handleClick4 = this.handleClick4.bind(this);
-      this.handleClick5 = this.handleClick5.bind(this);
+      this.handleClick5 = this.handleClick4.bind(this);
     }
 
     handleClick2(e){
@@ -129,7 +129,9 @@
 	constructor(props){
 		super(props);
     this.state = {
-      answer: 0
+      answer: 0,
+	  inputValue: ''
+
     }
 
     this.handleCLick=this.handleCLick.bind(this);
@@ -150,6 +152,9 @@
 
   handleChangeAnswer(e){
     if(e.target.value != ""){
+	  this.setState({
+		inputValue: e.target.value
+	  })
       if(
         this.props.content.en.toLowerCase().replace(new RegExp("\\s","gi"),"") == e.target.value.toLowerCase().replace(new RegExp("\\s","gi"),"") ||
         this.props.content.full_en.toLowerCase().replace(new RegExp("\\s","gi"),"") == e.target.value.toLowerCase().replace(new RegExp("\\s","gi"),"") ||
@@ -211,7 +216,7 @@
             <span>
               {this.props.mode != "normal" ? '정답은? ' : ''}
             </span>
-            {this.props.mode != "normal" ? <input type="text" onChange={this.handleChangeAnswer}/> : ''}
+            {this.props.mode != "normal" ? <input type="text" onChange={this.handleChangeAnswer} value={this.state.inputValue}/> : ''}
             <span>
               {(this.props.mode != "normal") && (this.state.answer==1) ? '정답' : ''}
             </span>
