@@ -13,7 +13,7 @@ header{
 
 #root{height:100%;}
 .app{height:100%;}
-.searchBox{z-index:20; position:sticky; top:0; background-color:#e8e8e8; padding:10px;}
+.searchBox{z-index:20; position:sticky; position:-webkit-sticky; top:0; background-color:#e8e8e8; padding:10px;}
 .searchBox input{
   width: 100%;
   padding: 12px 20px;
