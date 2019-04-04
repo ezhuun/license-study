@@ -16,8 +16,8 @@
       super(props);
       this.handleClick1 = this.handleClick1.bind(this);
       this.handleClick2 = this.handleClick2.bind(this);
+      this.handleClick3 = this.handleClick3.bind(this);
       this.handleClick4 = this.handleClick4.bind(this);
-      this.handleClick5 = this.handleClick5.bind(this);
     }
 
     handleClick1(e){
@@ -28,13 +28,13 @@
       e.preventDefault();
       location.href="./algorithm.html";
     }
+    handleClick3(e){
+      e.preventDefault();
+      location.href="./databases.html";
+    }
     handleClick4(e){
       e.preventDefault();
       location.href="./eng.html";
-    }
-    handleClick5(e){
-      e.preventDefault();
-      location.href="./process.html";
     }
 
     render(){
@@ -42,16 +42,16 @@
         <div className="navigator">
           <div onClick={this.handleClick1}>신기술동향</div>
           <div onClick={this.handleClick2}>알고리즘</div>
-          <div className="active">데이터베이스</div>
+          <div onClick={this.handleClick3}>데이터베이스</div>
           <div onClick={this.handleClick4}>전산영어</div>
-          <div onClick={this.handleClick4}>업무프로세스</div>
+          <div className="active">업무프로세스</div>
         </div>
       );
     }
   }
 
 
-  class Databases extends React.Component{
+  class Process extends React.Component{
     constructor(props){
       super(props);
     }
@@ -59,7 +59,7 @@
     render() {
       return (
         <div className="pdf">
-          <iframe src="./resource/databases.pdf"></iframe>
+          <iframe src="./resource/process.pdf"></iframe>
         </div>
       );
     }
@@ -73,7 +73,7 @@
     render() {
       return (
         <div className="app">
-          <Databases />
+          <Process />
           <Navi />
         </div>
       );
