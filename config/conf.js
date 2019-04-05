@@ -1,6 +1,6 @@
 var newTechnologyObject = [
   {
-    "no": 1,
+    "no": 3,
     "page": 322,
     "en": "DES",
     "full_en": "Data Encryption Standard",
@@ -1958,5 +1958,101 @@ var newTechnologyObject = [
     "full_en": "",
     "ko": "평면 디자인",
     "description": "그림자나 기울기 등 3차원입체감을 주는 화려한 요소 사용 최소화 하는 디자인 장르"
+  },
+  {
+    "no": 246,
+    "page": "",
+    "en": "Kill Switch",
+    "full_en": "",
+    "ko": "킬스위치",
+    "description": "스마트폰 이용자가 도난당한 스마트폰의 작동을 웹사이트를 통해 정지할 수 있도록 하는 일종의 자폭기능이다. 이 기능을 통해 스마트폰의 불법유통, 도난이나 분실을 어느정도 막을 수 있다."
+  },
+  {
+    "no": 247,
+    "page": "",
+    "en": "Click Farm",
+    "full_en": "",
+    "ko": "클릭농장",
+    "description": "인터넷에서 특정 상품의 조회수, 앱 다운로드 수 등을 조작할 목적으로 가짜 클릭을 대량으로 생산하는 행위나 생산하는 곳을 말한다. 주로 저임금 근로자들, 자동화된 스크립트, 컴퓨터 프로그램 등을 이용하여 특정 게시글의 좋아요, 추천수, 조회수, 팔로워 구독자 수를 조작하여 이용자들을 속인다."
+  },
+  {
+    "no": 248,
+    "page": "",
+    "en": "BIT",
+    "full_en": "",
+    "ko": "BIO Iformation Technology",
+    "description": "생명기술(BT)와 정보기술(IT)의 합성어로 크게 생명정보학, 바이오칩, BIO-MEMS로 기술영역이 구성됨."
+  },
+  {
+    "no": 249,
+    "page": "",
+    "en": "HWD",
+    "full_en": "Head Mounted Display",
+    "ko": "머리 장착형 디스플레이",
+    "description": "사람이 눈이 볼 수 있는 시야각 전체에 영상이 꽉 차게 들어올 수 있도록 머리에 부착하는 디스플레이 장치"
+  },
+  {
+    "no": 250,
+    "page": "",
+    "en": "Space Clud",
+    "full_en": "",
+    "ko": "",
+    "description": "자체 기술로 자신의 우주기지에서 로켓을 성공적으로 발사한 나라를 말함."
+  },
+  {
+    "no": 251,
+    "page": "",
+    "en": "EA",
+    "full_en": "Enpterprise Archtecture",
+    "ko": "엔터프라이즈 아키텍처",
+    "description": "기업 정보와 관련된 자원을 단순화하고 재사용성을 재대화함으로써 변화에 신속하게 대응하도록 기업내 최고정보책임자(CIO)들이 마련하는 밑그림"
+  },
+  {
+    "no": 252,
+    "page": "",
+    "en": "SDN",
+    "full_en": "Software Defined Network",
+    "ko": "소프트정의 네트워크",
+    "description": "전통적인 네트워크 장비들에서는 결한되어있는 제어부와 데이터부를 분리한 후 네트워크 제어부들을 한곳에 모아 중앙 집중형으로 관리하는 일종의 네트워크 가상화 기술"
+  },
+  {
+    "no": 253,
+    "page": "",
+    "en": "OLAP",
+    "full_en": "Online Analytical Processing",
+    "ko": "올랩",
+    "description": "사용자가 데이터베이스를 직접 검색하고 분석해서 문제점이나 해결책을 찾는 애플리케이션"
+  },
+  {
+    "no": 254,
+    "page": "",
+    "en": "ICN",
+    "full_en": "",
+    "ko": "",
+    "description": "통신을 기반으로 한 이전의 인터넷 통신 패러다임 정보 중심으로 재편성하려는 네트워킹을 가리킴 통신을 원하는 개체가 대상 호스트의 주소에 기반한 통신이 아닌 정보 식별자를 기반으로 하는 통신"
+  },
+  {
+    "no": 255,
+    "page": "",
+    "en": "TEE",
+    "full_en": "Trusted Execution Environment",
+    "ko": "신뢰 실행 환경",
+    "description": "프로세서 내에 일반 영역과 다른 보안 영역을 제공함으로써, 보안 관련 애플리케이션이 다른 애플리케이션의 영향을 받지 않고 안전하게 실행될 수 있도록 조성된 환경을 의미한다."
+  },
+  {
+    "no": 256,
+    "page": "",
+    "en": "Bitcoin",
+    "full_en": "",
+    "ko": "비트코인",
+    "description": "디지털 정보량 기본단위인 비트(bit)로 표시한 전자 화폐, 2009년 1월 부터 인터넷 개인간(P2P) 거래에 쓰이기 시작함."
+  },
+  {
+    "no": 257,
+    "page": "",
+    "en": "ITIL",
+    "full_en": "Information Technology Infrastructure Library",
+    "ko": "",
+    "description": "IT?서비스 분야의 우수 사례를 모은 책들. 1980년대 영국정부 기관인?OGC가 개발했으며 전세계 기업으로부터 효율성을 인정받아 사실상의 표준?IT관리 가이드라인으로 활용되고 있다."
   }
 ];
