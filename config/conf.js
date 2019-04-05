@@ -1,6 +1,6 @@
 var newTechnologyObject = [
   {
-    "no": 3,
+    "no": 1,
     "page": 322,
     "en": "DES",
     "full_en": "Data Encryption Standard",
@@ -1961,7 +1961,7 @@ var newTechnologyObject = [
   },
   {
     "no": 246,
-    "page": "",
+    "page": 426,
     "en": "Kill Switch",
     "full_en": "",
     "ko": "킬스위치",
@@ -1969,7 +1969,7 @@ var newTechnologyObject = [
   },
   {
     "no": 247,
-    "page": "",
+    "page": 426,
     "en": "Click Farm",
     "full_en": "",
     "ko": "클릭농장",
@@ -1977,7 +1977,7 @@ var newTechnologyObject = [
   },
   {
     "no": 248,
-    "page": "",
+    "page": 426,
     "en": "BIT",
     "full_en": "",
     "ko": "BIO Iformation Technology",
@@ -1985,7 +1985,7 @@ var newTechnologyObject = [
   },
   {
     "no": 249,
-    "page": "",
+    "page": 426,
     "en": "HWD",
     "full_en": "Head Mounted Display",
     "ko": "머리 장착형 디스플레이",
@@ -1993,7 +1993,7 @@ var newTechnologyObject = [
   },
   {
     "no": 250,
-    "page": "",
+    "page": 426,
     "en": "Space Club",
     "full_en": "",
     "ko": "",
@@ -2001,7 +2001,7 @@ var newTechnologyObject = [
   },
   {
     "no": 251,
-    "page": "",
+    "page": 426,
     "en": "EA",
     "full_en": "Enpterprise Archtecture",
     "ko": "엔터프라이즈 아키텍처",
@@ -2009,15 +2009,15 @@ var newTechnologyObject = [
   },
   {
     "no": 252,
-    "page": "",
+    "page": 426,
     "en": "SDN",
     "full_en": "Software Defined Network",
-    "ko": "소프트정의 네트워크",
+    "ko": "소프트웨어 정의 네트워크",
     "description": "전통적인 네트워크 장비들에서는 결한되어있는 제어부와 데이터부를 분리한 후 네트워크 제어부들을 한곳에 모아 중앙 집중형으로 관리하는 일종의 네트워크 가상화 기술"
   },
   {
     "no": 253,
-    "page": "",
+    "page": 426,
     "en": "OLAP",
     "full_en": "Online Analytical Processing",
     "ko": "올랩",
@@ -2025,7 +2025,7 @@ var newTechnologyObject = [
   },
   {
     "no": 254,
-    "page": "",
+    "page": 426,
     "en": "ICN",
     "full_en": "",
     "ko": "",
@@ -2033,7 +2033,7 @@ var newTechnologyObject = [
   },
   {
     "no": 255,
-    "page": "",
+    "page": 426,
     "en": "TEE",
     "full_en": "Trusted Execution Environment",
     "ko": "신뢰 실행 환경",
@@ -2041,7 +2041,7 @@ var newTechnologyObject = [
   },
   {
     "no": 256,
-    "page": "",
+    "page": 426,
     "en": "Bitcoin",
     "full_en": "",
     "ko": "비트코인",
@@ -2049,10 +2049,10 @@ var newTechnologyObject = [
   },
   {
     "no": 257,
-    "page": "",
+    "page": 426,
     "en": "ITIL",
     "full_en": "Information Technology Infrastructure Library",
     "ko": "",
-    "description": "IT 서비스 분야의 우수 사례를 모은 책들. 1980년대 영국정부 기관인 OGC가 개발했으며 전세계 기업으로부터 효율성을 인정받아 사실상의 표준 IT관리 가이드라인으로 활용되고 있다."
+    "description": "IT서비스 분야의 우수 사례를 모은 책들. 1980년대 영국정부 기관인?OGC가 개발했으며 전세계 기업으로부터 효율성을 인정받아 사실상의 표준?IT관리 가이드라인으로 활용되고 있다."
   }
 ];
