@@ -1994,7 +1994,7 @@ var newTechnologyObject = [
   {
     "no": 250,
     "page": "",
-    "en": "Space Clud",
+    "en": "Space Club",
     "full_en": "",
     "ko": "",
     "description": "자체 기술로 자신의 우주기지에서 로켓을 성공적으로 발사한 나라를 말함."
@@ -2053,6 +2053,6 @@ var newTechnologyObject = [
     "en": "ITIL",
     "full_en": "Information Technology Infrastructure Library",
     "ko": "",
-    "description": "IT?서비스 분야의 우수 사례를 모은 책들. 1980년대 영국정부 기관인?OGC가 개발했으며 전세계 기업으로부터 효율성을 인정받아 사실상의 표준?IT관리 가이드라인으로 활용되고 있다."
+    "description": "IT 서비스 분야의 우수 사례를 모은 책들. 1980년대 영국정부 기관인 OGC가 개발했으며 전세계 기업으로부터 효율성을 인정받아 사실상의 표준 IT관리 가이드라인으로 활용되고 있다."
   }
 ];
