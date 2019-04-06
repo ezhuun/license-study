@@ -43,7 +43,6 @@
   var arr = [];
   if(localStorage){
     if(!(localStorage.getItem("no") == null || localStorage.getItem("no") == "")){
-      console.log(localStorage.getItem("no"));
       arr = localStorage.getItem("no").split(',');
 
     }
@@ -196,7 +195,6 @@
       let tempStr = this.props.content.no+"";
       if(arr.indexOf(tempStr) !== -1){
         activeClass = "active";
-        console.log(tempStr+"번: "+activeClass);
       }
 
       let heightStyle={}
