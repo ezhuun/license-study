@@ -253,11 +253,19 @@
   	constructor(props){
   		super(props);
 
+      let mode = "normal";
+      if(localStorage){
+        if(localStorage.getItem("mode") != null){
+          mode = localStorage.getItem("mode");
+        }
+      }
+
   		this.state = {
   			keyword: '',
         newTechnologyData: newTechnologyObject,
-        mode: "normal"
+        mode: mode
   		}
+
   		this.handleChange = this.handleChange.bind(this);
       this.handleModeChangeClick = this.handleModeChangeClick.bind(this);
     }
@@ -273,10 +281,16 @@
         this.setState({
           mode: "testing"
         });
+        if(localStorage){
+          localStorage.setItem("mode", "testing");
+        }
       }else{
         this.setState({
           mode: "normal"
         });
+        if(localStorage){
+          localStorage.setItem("mode", "normal");
+        }
       }
 
     }
