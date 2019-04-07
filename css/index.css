@@ -141,3 +141,13 @@ header{
   margin-left:10px;
 }
 .show-answer{margin-left:10px; color:#A08A8A; cursor:pointer; font-size:0.7em;}
+
+
+.shuffle{
+  position:absolute;
+  top:-7px;
+  right:100px;
+  cursor:pointer;
+}
+
+.shuffle img{width:25px; height:30px; }

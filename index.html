@@ -268,6 +268,23 @@
 
   		this.handleChange = this.handleChange.bind(this);
       this.handleModeChangeClick = this.handleModeChangeClick.bind(this);
+      this.handleShuffleClick = this.handleShuffleClick.bind(this);
+    }
+
+    handleShuffleClick(e){
+      let shuffleArray = this.state.newTechnologyData;
+
+      for(let i=shuffleArray.length-1; i>0; i--){
+        let j = Math.floor(Math.random() * (i+1));
+        let temp = shuffleArray[i];
+        shuffleArray[i] = shuffleArray[j];
+        shuffleArray[j] = temp;
+      }
+      e.target.src = "./images/shuffle_on.png";
+      this.setState({
+        newTechnologyData: shuffleArray
+      });
+
     }
 
   	handleChange(e){
@@ -342,6 +359,9 @@
           <div className="searchBox">
             <span>#번호 or 검색키워드</span>
             <div style={relativeBox}>
+              <div className="shuffle" onClick={this.handleShuffleClick}>
+                <img src="./images/shuffle_off.png" />
+              </div>
               <div className="TstingBox" onClick={this.handleModeChangeClick}>
                 {this.state.mode=="normal" ? '문제풀기' : '기본전환'}
               </div>
