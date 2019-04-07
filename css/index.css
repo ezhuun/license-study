@@ -10,6 +10,7 @@ header{
   position:relative;
   text-align:center;
 }
+header h1{cursor:pointer;}
 
 #root{height:100%;}
 .app{height:100%;}

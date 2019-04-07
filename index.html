@@ -269,6 +269,11 @@
   		this.handleChange = this.handleChange.bind(this);
       this.handleModeChangeClick = this.handleModeChangeClick.bind(this);
       this.handleShuffleClick = this.handleShuffleClick.bind(this);
+      this.handleHomeClick = this.handleHomeClick.bind(this);
+    }
+
+    handleHomeClick(){
+      location.href="./index.html";
     }
 
     handleShuffleClick(e){
@@ -354,7 +359,7 @@
   		return(
   			<div>
   				<header>
-            <h1>신기술동향 단어장</h1>
+            <h1 onClick={this.handleHomeClick}>신기술동향 단어장</h1>
           </header>
           <div className="searchBox">
             <span>#번호 or 검색키워드</span>
