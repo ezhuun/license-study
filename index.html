@@ -135,7 +135,7 @@
 
     this.handleCLick=this.handleCLick.bind(this);
     this.handleChangeAnswer = this.handleChangeAnswer.bind(this);
-	this.handleShowAnswerClick = this.handleShowAnswerClick.bind(this);
+	  this.handleShowAnswerClick = this.handleShowAnswerClick.bind(this);
 	}
 
  handleShowAnswerClick(){
@@ -350,7 +350,7 @@
 					content.full_en = content.full_en.replace(new RegExp(this.state.keyword,"gi"), (match) => {return "<mark>"+match+"</mark>"});
 					content.description = content.description.replace(new RegExp(this.state.keyword,"gi"), (match) => {return "<mark>"+match+"</mark>"});
 				}
-  				return (<NewTechnologyInfo content={content} key={i} mode={this.state.mode}/>);
+  				return (<NewTechnologyInfo content={content} key={content.no} mode={this.state.mode}/>);
   			});
   		}
       const relativeBox={
