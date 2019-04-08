@@ -1986,7 +1986,7 @@ var newTechnologyObject = [
   {
     "no": 249,
     "page": "",
-    "en": "HWD",
+    "en": "HMD",
     "full_en": "Head Mounted Display",
     "ko": "머리 장착형 디스플레이",
     "description": "사람이 눈이 볼 수 있는 시야각 전체에 영상이 꽉 차게 들어올 수 있도록 머리에 부착하는 디스플레이 장치"
