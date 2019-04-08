@@ -1930,7 +1930,7 @@ var newTechnologyObject = [
   {
     "no": 242,
     "page": 424,
-    "en": "en",
+    "en": "ENG",
     "full_en": "Electronic News Gathering",
     "ko": "이엔지",
     "description": "카메라와 녹화부가 탑제된 일체형 카메라 시스템"
