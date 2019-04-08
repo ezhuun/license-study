@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <link rel="stylesheet" href="./css/index.css" type="text/css" />
   <script src="./config/conf.js"></script>
-  <script
-  src="https://code.jquery.com/jquery-2.2.4.min.js"
-  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <script src="https://unpkg.com/react@15/dist/react.js"></script>
   <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
@@ -40,11 +37,10 @@
     localStorage.setItem("scrollTop", scrollTop);
   }
 
-  var arr = [];
+  var SelectedIndexArr = [];
   if(localStorage){
     if(!(localStorage.getItem("no") == null || localStorage.getItem("no") == "")){
-      arr = localStorage.getItem("no").split(',');
-
+      SelectedIndexArr = localStorage.getItem("no").split(',');
     }
   }
   function localStorageRemoveNo(no){
@@ -55,14 +51,19 @@
         temp = getNo;
         temp = temp.split(',');
         temp.splice(temp.indexOf(no), 1);
-        arr = temp.filter((item, idx, array)=>{
+        SelectedIndexArr = temp.filter((item, idx, array)=>{
           return array.indexOf( item ) === idx ;
         });
-        temp = arr.join(',');
+        temp = SelectedIndexArr.join(',');
         localStorage.setItem("no",temp);
+
+        return SelectedIndexArr.length;
       }
 
+      return 0;
     }
+
+    return 0;
   }
 
   function localStorageAddNo(no){
@@ -70,20 +71,22 @@
       let getNo = localStorage.getItem("no");
       let temp=null;
       if(getNo == null || getNo == ""){
-        arr.push(no);
-        temp = arr.join(',');
+        SelectedIndexArr.push(no);
+        temp = SelectedIndexArr.join(',');
         localStorage.setItem("no",temp);
       }else{
         temp = getNo;
         temp = temp.split(',');
         temp.push(no);
-        arr = temp.filter((item, idx, array)=>{
+        SelectedIndexArr = temp.filter((item, idx, array)=>{
           return array.indexOf( item ) === idx ;
         });
-        temp = arr.join(',');
+        temp = SelectedIndexArr.join(',');
         localStorage.setItem("no",temp);
       }
+      return SelectedIndexArr.length;
     }
+    return 0;
   }
   class Navi extends React.Component{
     constructor(props){
@@ -133,7 +136,7 @@
 	  showAnswer: 0
     }
 
-    this.handleCLick=this.handleCLick.bind(this);
+    this.handleClick=this.handleClick.bind(this);
     this.handleChangeAnswer = this.handleChangeAnswer.bind(this);
 	  this.handleShowAnswerClick = this.handleShowAnswerClick.bind(this);
 	}
@@ -150,16 +153,18 @@
 	}
  }
 
-  handleCLick(e){
+  handleClick(e){
+    let cnt=0;
     if(e.target.classList.contains("active")){
       //초기화
-      localStorageRemoveNo(e.target.innerText);
+      cnt = localStorageRemoveNo(e.target.innerText);
       e.target.classList.remove("active");
     }else{
       //입력
-      localStorageAddNo(e.target.innerText);
+      cnt = localStorageAddNo(e.target.innerText);
       e.target.classList.add("active");
     }
+    this.props.callbackFromParent(cnt);
   }
 
   handleChangeAnswer(e){
@@ -193,7 +198,7 @@
 
       let activeClass="";
       let tempStr = this.props.content.no+"";
-      if(arr.indexOf(tempStr) !== -1){
+      if(SelectedIndexArr.indexOf(tempStr) !== -1){
         activeClass = "active";
       }
 
@@ -210,16 +215,17 @@
 
 	  let showAnswer="";
 	  if(this.props.mode != "normal"){
-		if(this.state.showAnswer==0){
-			showAnswer="정답보기";
-		}else{
-			showAnswer=this.props.content.en;
-		}
+  		if(this.state.showAnswer==0){
+  			showAnswer="정답보기";
+  		}else{
+  			showAnswer=this.props.content.en;
+  		}
 	  }
+
   		return(
-  			<div className="postCard">
+  			<div className="postCard" id={this.props.content.no}>
           <div className="card-head">
-            <span className={'no '+ activeClass} onClick={this.handleCLick}>
+            <span className={'no '+ activeClass} onClick={this.handleClick}>
               {this.props.content.no}
             </span>
             <div className="card-title">
@@ -249,6 +255,7 @@
   	}
   }
 
+  let tempCnt=0; //선택했던key값에 따라 scroll을 변환시켜줄 index값을 저장
   class NewTechnology extends React.Component{
   	constructor(props){
   		super(props);
@@ -259,17 +266,31 @@
           mode = localStorage.getItem("mode");
         }
       }
-
   		this.state = {
   			keyword: '',
         newTechnologyData: newTechnologyObject,
-        mode: mode
+        mode: mode,
+        selectedCount: SelectedIndexArr.length
   		}
 
   		this.handleChange = this.handleChange.bind(this);
       this.handleModeChangeClick = this.handleModeChangeClick.bind(this);
       this.handleShuffleClick = this.handleShuffleClick.bind(this);
       this.handleHomeClick = this.handleHomeClick.bind(this);
+      this.selectedCounting = this.selectedCounting.bind(this);
+      this.handleScrollMoveClick = this.handleScrollMoveClick.bind(this);
+    }
+
+    handleScrollMoveClick(){
+      SelectedIndexArr.sort(function(a,b){
+        return a-b;
+      });
+      if(tempCnt < SelectedIndexArr.length){
+        let offsetTop= document.getElementById(SelectedIndexArr[tempCnt++]).offsetTop;
+        $('html, body').animate({scrollTop :offsetTop+84}, 400);
+      }else{
+        tempCnt=0;
+      }
     }
 
     handleHomeClick(){
@@ -285,7 +306,6 @@
         shuffleArray[i] = shuffleArray[j];
         shuffleArray[j] = temp;
       }
-      e.target.src = "./images/shuffle_on.png";
       this.setState({
         newTechnologyData: shuffleArray
       });
@@ -317,6 +337,11 @@
 
     }
 
+    selectedCounting(cnt){
+      this.setState({
+        selectedCount: cnt
+      });
+    }
 
   	render(){
       const mapToComponents = (data) => {
@@ -350,12 +375,14 @@
 					content.full_en = content.full_en.replace(new RegExp(this.state.keyword,"gi"), (match) => {return "<mark>"+match+"</mark>"});
 					content.description = content.description.replace(new RegExp(this.state.keyword,"gi"), (match) => {return "<mark>"+match+"</mark>"});
 				}
-  				return (<NewTechnologyInfo content={content} key={content.no} mode={this.state.mode}/>);
+  				return (<NewTechnologyInfo content={content} key={content.no} mode={this.state.mode} callbackFromParent={this.selectedCounting}/>);
   			});
   		}
       const relativeBox={
         position:"relative"
       }
+
+      let style_selectedno = (this.state.selectedCount==0 ? 'selectedNo_disabled' : 'selectedNo');
   		return(
   			<div>
   				<header>
@@ -364,11 +391,18 @@
           <div className="searchBox">
             <span>#번호 or 검색키워드</span>
             <div style={relativeBox}>
-              <div className="shuffle" onClick={this.handleShuffleClick}>
-                <img src="./images/shuffle_off.png" />
-              </div>
-              <div className="TstingBox" onClick={this.handleModeChangeClick}>
-                {this.state.mode=="normal" ? '문제풀기' : '기본전환'}
+              <div className="absoluteBox">
+                <div className="TstingBox" onClick={this.handleModeChangeClick}>
+                  {this.state.mode=="normal" ? '문제풀기' : '기본전환'}
+                </div>
+                <div className="shuffle" onClick={this.handleShuffleClick}>
+                  <span>shake!!</span>
+                </div>
+
+                <div className={style_selectedno} onClick={this.handleScrollMoveClick}>
+                  {this.state.selectedCount}
+                </div>
+
               </div>
             </div>
             <input name="keyword" placeholder="Search for Keyword" value={this.state.keyword} onChange={this.handleChange}/>
