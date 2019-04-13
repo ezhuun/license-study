@@ -13,6 +13,11 @@
   <script src="https://unpkg.com/html-react-parser@latest/dist/html-react-parser.min.js"></script>
   <script type="text/babel">
 
+  let processElement = null;
+  window.onload = function(){
+    processElement = document.querySelector(".process-status");
+  }
+
   const debounce = (fn, delay) => {
   	var timer = null;
   	return function(){
@@ -32,6 +37,12 @@
 
   function handleScroll(){
     setLocalStorage(window.scrollY);
+    let bodyHeight = document.body.scrollHeight - document.body.offsetHeight;
+    let current_scroll = window.scrollY;
+    let pagePerScrollPercent = (current_scroll / bodyHeight) * 100;
+
+    processElement.style.width = pagePerScrollPercent+"%";
+
   }
   function setLocalStorage(scrollTop){
     localStorage.setItem("scrollTop", scrollTop);
@@ -88,6 +99,17 @@
     }
     return 0;
   }
+
+  class Processbar extends React.Component{
+    render(){
+      return(
+        <div className="process-bar">
+          <div className="process-status"></div>
+        </div>
+      );
+    }
+  }
+
   class Navi extends React.Component{
     constructor(props){
       super(props);
@@ -389,7 +411,7 @@
             <h1 onClick={this.handleHomeClick}>신기술동향 단어장</h1>
           </header>
           <div className="searchBox">
-            <span>#번호 or 검색키워드</span>
+            <span>#번호 or 키워드</span>
             <div style={relativeBox}>
               <div className="absoluteBox">
                 <div className="TstingBox" onClick={this.handleModeChangeClick}>
@@ -423,6 +445,7 @@
     render() {
     return (
       <div className="app">
+        <Processbar />
         <NewTechnology />
         <Navi />
       </div>

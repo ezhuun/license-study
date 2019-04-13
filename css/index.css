@@ -239,3 +239,15 @@
      transition: all 0.5s;
      -webkit-transition: all 0.5s;
 }
+ .process-bar{
+     position:fixed;
+     top:0;
+     width:100%;
+     height:auto;
+     z-index: 99;
+}
+ .process-status{
+     width:0;
+     border:0.5px solid #8a8383;
+     transition: width 1.0s;
+}
